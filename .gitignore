@@ -31,6 +31,8 @@ ExportedObj/
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
 
+/2D Galaxy Assets
+
 # Builds
 *.apk
 *.unitypackage
