@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     private GameObject[] _engines;
 
     [SerializeField]
-    private float _speedMultiplier = 5;
+    private float _speedMultiplier = 8;
 
     private UIManager _uiManager;
     private GameManager _gameManager;
@@ -104,20 +104,20 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, 0, 0);
         }
-        else if (transform.position.y < -4.22f)
+        else if (transform.position.y < -7.9f)
         {
-            transform.position = new Vector3(transform.position.x, -4.22f, 0);
+            transform.position = new Vector3(transform.position.x, -7.9f, 0);
 
         }
-
-        if (transform.position.x > 9.01f)
-        {
-            transform.position = new Vector3(-9.01f, transform.position.y, 0);
+ if (transform.position.x > 12.4f){
+            transform.position = new Vector3(12.4f, transform.position.y, 0);
         }
-        if (transform.position.x < -9.01f)
+        if (transform.position.x < -12.4f)
         {
-            transform.position = new Vector3(9.01f, transform.position.y, 0);
+            transform.position = new Vector3(-12.4f, transform.position.y, 0);
         }
+       
+       
     }
 
     public void Damage(){

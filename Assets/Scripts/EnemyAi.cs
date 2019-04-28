@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class EnemyAI : MonoBehaviour
+public class EnemyAi : MonoBehaviour
 {
-    [SerializeField]
+  [SerializeField]
     private float _speed = 5.0f;
 
     [SerializeField]
@@ -27,10 +26,11 @@ public class EnemyAI : MonoBehaviour
     {
 
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
-        if(transform.position.y < -7f)
+        if(transform.position.y < -10f)
         {
             float xPosition = Random.Range(-8f, 8f);
           transform.position = new Vector3(xPosition, transform.position.y * -1, 0);
+        Destroy(this.gameObject);
         }
     }
 
@@ -44,7 +44,7 @@ public class EnemyAI : MonoBehaviour
             }
             Debug.Log("Laser kill");
          
-            Instantiate(_deathAnimation, transform.position, Quaternion.identity);
+            //Instantiate(_deathAnimation, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
             Destroy(other.gameObject);
             _uiManager.UpdateScore(10);
