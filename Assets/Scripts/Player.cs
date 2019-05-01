@@ -29,6 +29,11 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private float _fireRate = 0.5f;
+    
+    [SerializeField]
+    private int _maxAmmo = 5;
+
+    private int _currentAmmo;
     private float _nextFire = 0.0f;
 
     [SerializeField]
@@ -37,6 +42,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _speedMultiplier = 8;
 
+    private bool _isReloading = false;
     private UIManager _uiManager;
     private GameManager _gameManager;
     private AudioSource _audioSource;
@@ -45,6 +51,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _currentAmmo = _maxAmmo;
        transform.position = new Vector3(0,0,0);
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _uiManager.UpdateLives(_lifes);
@@ -57,13 +64,14 @@ public class Player : MonoBehaviour
     {
         Movement();
         Shoot();
+        reloadAmmo();
     }
 
     private void Shoot()
     {
         
 
-        if((Input.GetKeyDown(KeyCode.Space)|| Input.GetKeyDown(KeyCode.Mouse0))&& Time.time > _nextFire)
+        if((Input.GetKeyDown(KeyCode.Space)|| Input.GetKeyDown(KeyCode.Mouse0))&& Time.time > _nextFire && _currentAmmo > 0)
         {
             switch (_shootType) { 
                 case 0:
@@ -75,6 +83,7 @@ public class Player : MonoBehaviour
                     Instantiate(_tripeShotPrefab, transform.position, Quaternion.identity);
                     break;
             }
+            _currentAmmo--;
             _audioSource.Play();
     }
 
@@ -100,16 +109,17 @@ public class Player : MonoBehaviour
         transform.Translate(Vector3.up * Time.deltaTime * _speedMultiplier * verticalInput);
 
 
-        if (transform.position.y > 0)
+        if (transform.position.y > 3)
         {
-            transform.position = new Vector3(transform.position.x, 0, 0);
+            transform.position = new Vector3(transform.position.x, 3, 0);
         }
         else if (transform.position.y < -7.9f)
         {
             transform.position = new Vector3(transform.position.x, -7.9f, 0);
 
         }
- if (transform.position.x > 12.4f){
+        
+        if (transform.position.x > 12.4f){
             transform.position = new Vector3(12.4f, transform.position.y, 0);
         }
         if (transform.position.x < -12.4f)
@@ -119,7 +129,11 @@ public class Player : MonoBehaviour
        
        
     }
-
+   private void reloadAmmo(){
+       if(_currentAmmo == 0){
+           StartCoroutine(reload());
+       }
+   }
     public void Damage(){
         if(_hasShield){
             _hasShield = !_hasShield;
@@ -183,6 +197,14 @@ public class Player : MonoBehaviour
     }
     
     public int Lifes { get => Lifes; }
+
+    IEnumerator reload()
+    {
+        yield return new WaitForSeconds(1.5f);
+        _isReloading = false;
+        _currentAmmo = _maxAmmo;
+        //_uiManager.updateAmmo(_currentAmmo);
+    }
 
 
 }

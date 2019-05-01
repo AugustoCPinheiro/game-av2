@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        //_uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         
     }
 
@@ -24,10 +24,10 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (gameOver && Input.GetKey(KeyCode.Space))
-        {
+       {
             gameOver = !gameOver;
-            _uiManager.SetupUIStart();
-            Instantiate(_playerPrefab, Vector3.zero, Quaternion.identity);
+           // _uiManager.SetupUIStart();
+    //        Instantiate(_playerPrefab, Vector3.zero, Quaternion.identity);
 
             SpawnManager spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
             StartCoroutine(spawnManager.SpawnEnemy());

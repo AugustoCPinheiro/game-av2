@@ -16,7 +16,7 @@ public class SpawnManager : MonoBehaviour
     public IEnumerator SpawnEnemy(){
 
         while(!_gameManager.gameOver){
-           Instantiate(_enemyShipPrefab, new Vector3(Random.Range(-8f, 8f), 7, 0), Quaternion.identity);
+           Instantiate(_enemyShipPrefab, new Vector3(Random.Range(-8f, 8f), 12.3f, 0), Quaternion.identity);
            yield return new WaitForSeconds(5.0f);
         }
    }
