@@ -13,6 +13,7 @@ public class PlayerAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             _animator.SetBool("Turn_left", true);

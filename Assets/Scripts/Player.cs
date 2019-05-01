@@ -158,14 +158,14 @@ public class Player : MonoBehaviour
     private void BreakEngine()
     {
 
-       if(_maxLifes - _lifes == 1)
-        {
-            _engines[0].SetActive(true);
-        }
-        else
-        {
-            _engines[1].SetActive(true);
-        }
+       //if(_maxLifes - _lifes == 1)
+        //{
+         //   _engines[0].SetActive(true);
+       // }
+      //  else
+    //    {
+  //          _engines[1].SetActive(true);
+//        }
     }
 
     public void ReloadPowerupOn()
