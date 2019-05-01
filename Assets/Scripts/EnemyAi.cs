@@ -49,10 +49,10 @@ public class EnemyAi : MonoBehaviour
                 Debug.Log("Laser kill");
          
                 //Instantiate(_deathAnimation, transform.position, Quaternion.identity);
+                GenerateDrop();
                 Destroy(this.gameObject);
                 _uiManager.UpdateScore(10);
             
-                GenerateDrop();
             }
 
         }
