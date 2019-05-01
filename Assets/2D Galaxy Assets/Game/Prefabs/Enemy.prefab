@@ -116,10 +116,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6128526323814984929}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 282f0d39fa05621429e9a305c75b93e8, type: 3}
+  m_Script: {fileID: 11500000, guid: 8dacd053680342340a05f1d8dac0d856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
+  _lifes: 2
   _powerUpDrops:
   - {fileID: 9061208270846834441, guid: 5c3218dbdd6fde94f92af724891e55b3, type: 3}
   - {fileID: 4915666744425830725, guid: f334c0591344883418acd6ae328f24ef, type: 3}

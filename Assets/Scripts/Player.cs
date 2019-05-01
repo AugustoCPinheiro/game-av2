@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
                     break;
             }
             _currentAmmo--;
-            _audioSource.Play();
+//            _audioSource.Play();
     }
 
   
@@ -148,8 +148,8 @@ public class Player : MonoBehaviour
 
             if (_lifes < 1){
                 Instantiate(_deathAnimation, transform.position, Quaternion.identity);
-                _gameManager.gameOver = true;
-                _uiManager.SetupUIEnd();
+                //_gameManager.gameOver = true;
+                //_uiManager.SetupUIEnd();
                 Destroy(this.gameObject);
             }
         }
