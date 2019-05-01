@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     private int _lifes = 3;
 
     [SerializeField]
-    private float _fireRate = 0.5f;
+    private float _fireRate = 1f;
     
     [SerializeField]
     private int _maxAmmo = 5;
@@ -47,6 +47,7 @@ public class Player : MonoBehaviour
     private GameManager _gameManager;
     private AudioSource _audioSource;
     
+    private float _reloadSpeed = 1.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -62,16 +63,16 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        reloadAmmo();
         Movement();
         Shoot();
-        reloadAmmo();
     }
 
     private void Shoot()
     {
         
 
-        if((Input.GetKeyDown(KeyCode.Space)|| Input.GetKeyDown(KeyCode.Mouse0))&& Time.time > _nextFire && _currentAmmo > 0)
+        if((Input.GetKeyDown(KeyCode.Space)|| Input.GetKeyDown(KeyCode.Mouse0))&& Time.time > _nextFire && !_isReloading)
         {
             switch (_shootType) { 
                 case 0:
@@ -131,6 +132,7 @@ public class Player : MonoBehaviour
     }
    private void reloadAmmo(){
        if(_currentAmmo == 0){
+           _isReloading = true;
            StartCoroutine(reload());
        }
    }
@@ -141,7 +143,7 @@ public class Player : MonoBehaviour
 
         }else{
             _lifes--;
-            _uiManager.UpdateLives(_lifes);
+//            _uiManager.UpdateLives(_lifes);
             BreakEngine();
 
             if (_lifes < 1){
@@ -166,10 +168,10 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void TripleShootPowerUpOn()
+    public void ReloadPowerupOn()
     {
-        _shootType = 1;
-        StartCoroutine(TripleShootPowerDownRoutine());
+        _reloadSpeed = 1f;
+        StartCoroutine(ReloadPowerupDownRoutine());
     }
 
     public void SpeedPowerUpOn()
@@ -184,10 +186,10 @@ public class Player : MonoBehaviour
         _shieldGameObject.SetActive(true);
     }
 
-    IEnumerator TripleShootPowerDownRoutine()
+    IEnumerator ReloadPowerupDownRoutine()
     {
         yield return new WaitForSeconds(5.0f);
-        _shootType = 0;
+        _reloadSpeed = 1.5f;
     }
 
     IEnumerator SpeedPowerUpDownRoutine()
@@ -200,7 +202,7 @@ public class Player : MonoBehaviour
 
     IEnumerator reload()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(_reloadSpeed);
         _isReloading = false;
         _currentAmmo = _maxAmmo;
         //_uiManager.updateAmmo(_currentAmmo);

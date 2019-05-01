@@ -7,6 +7,8 @@ public class EnemyAi : MonoBehaviour
   [SerializeField]
     private float _speed = 5.0f;
 
+    private float _lifes = 2;
+
     [SerializeField]
     private GameObject[] _powerUpDrops;
 
@@ -38,18 +40,21 @@ public class EnemyAi : MonoBehaviour
     {
 
         if(other.tag.Equals("Laser")){
-
-            if(other.transform.parent != null){
-                Destroy(other.transform.parent.gameObject);
-            }
-            Debug.Log("Laser kill");
-         
-            //Instantiate(_deathAnimation, transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+            _lifes--;
             Destroy(other.gameObject);
-            _uiManager.UpdateScore(10);
+            if( _lifes == 0){
+                if(other.transform.parent != null){
+                    Destroy(other.transform.parent.gameObject);
+                }
+                Debug.Log("Laser kill");
+         
+                //Instantiate(_deathAnimation, transform.position, Quaternion.identity);
+                Destroy(this.gameObject);
+                _uiManager.UpdateScore(10);
             
-            GenerateDrop();
+                GenerateDrop();
+            }
+
         }
 
         if(other.tag.Equals("Player")){
@@ -66,11 +71,11 @@ public class EnemyAi : MonoBehaviour
 
     private void GenerateDrop()
     {
-        int random = Random.Range(1, 5);
-        if (random == 1)
-        {
-            random = Random.Range(0, 3);
-            Instantiate(_powerUpDrops[random], transform.position, Quaternion.identity);
-        }
+        //int random = Random.Range(1, 5);
+        //if (random == 1)
+        //{
+           // random = Random.Range(0, 3);
+            Instantiate(_powerUpDrops[1], transform.position, Quaternion.identity);
+       // }
     }
 }

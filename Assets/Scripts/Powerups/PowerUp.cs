@@ -7,16 +7,10 @@ public class PowerUp : MonoBehaviour
     [SerializeField]
     private float _speed = 2.5f;
 
-    [SerializeField]
-    private int _powerupId;
+    protected int _powerupId;
 
     [SerializeField]
     private AudioClip _clip;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -36,7 +30,7 @@ public class PowerUp : MonoBehaviour
             {
                 switch (_powerupId) {
                     case 0:
-                        player.TripleShootPowerUpOn();
+                        player.ReloadPowerupOn();
                         break;
                     case 1:
                         player.SpeedPowerUpOn();
