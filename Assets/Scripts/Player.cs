@@ -54,10 +54,10 @@ public class Player : MonoBehaviour
     {
         _currentAmmo = _maxAmmo;
        transform.position = new Vector3(0,0,0);
-        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
-        _uiManager.UpdateLives(_lifes);
+//        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+      //  _uiManager.UpdateLives(_lifes);
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        _audioSource = GetComponent<AudioSource>();
+        //_audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame

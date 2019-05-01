@@ -46,7 +46,7 @@ public abstract class EnemyAi : MonoBehaviour
                 //Instantiate(_deathAnimation, transform.position, Quaternion.identity);
                 GenerateDrop();
                 Destroy(this.gameObject);
-                _uiManager.UpdateScore(10);
+//                _uiManager.UpdateScore(10);
             
             }
 
@@ -69,8 +69,8 @@ public abstract class EnemyAi : MonoBehaviour
         int random = Random.Range(1, 5);
         if (random == 1)
         {
-            random = Random.Range(0, 3);
-            Instantiate(_powerUpDrops[1], transform.position, Quaternion.identity);
+            random = Random.Range(0, 2);
+            Instantiate(_powerUpDrops[random], transform.position, Quaternion.identity);
         }
     }
 }

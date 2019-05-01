@@ -16,7 +16,7 @@ public class PowerUp : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.down * Time.deltaTime * _speed);
-        if(transform.position.y < -5.55f)
+        if(transform.position.y < -10f)
         {
             Destroy(this.gameObject);
         }
@@ -40,7 +40,7 @@ public class PowerUp : MonoBehaviour
                         break;
                 }
         }
-            AudioSource.PlayClipAtPoint(_clip, Camera.main.transform.position, 1f);
+        //    AudioSource.PlayClipAtPoint(_clip, Camera.main.transform.position, 1f);
            
             Destroy(this.gameObject);
         }
