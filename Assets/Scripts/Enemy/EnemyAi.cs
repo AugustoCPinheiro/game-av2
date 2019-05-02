@@ -17,14 +17,14 @@ public abstract class EnemyAi : MonoBehaviour
 
     protected UIManager _uiManager;
 
-    protected GameManager gameManager;
+    protected GameManager _gameManager;
 
     // Start is called before the first frame update
     protected void Start()
     {
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         Debug.Log(GameObject.Find("Canvas").GetComponent<UIManager>());
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -53,7 +53,7 @@ public abstract class EnemyAi : MonoBehaviour
                 //Instantiate(_deathAnimation, transform.position, Quaternion.identity);
                 GenerateDrop();
                 Destroy(this.gameObject);
-                _uiManager.UpdateScore(10);
+                _gameManager.UpdatePlayerScore(10);
             
             }
 

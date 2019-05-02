@@ -19,8 +19,6 @@ public class UIManager : MonoBehaviour
   [SerializeField]
   private Image _menu;
 
-  public int score;
-
   public Text scoreText;
 
   private Player player;
@@ -38,8 +36,7 @@ public class UIManager : MonoBehaviour
 
   }
   public void UpdateScore(int points){
-    score += points;
-   scoreText.text = "Score: " + score;
+   scoreText.text = "Score: " + points;
   }
 
   //private void LateUpdate() {
@@ -66,8 +63,6 @@ public class UIManager : MonoBehaviour
   }
    public void SetupUIEnd()
    {
-        score = 0;
-        UpdateScore(0);
         _menu.gameObject.SetActive(true);
           livesImageDisplay.gameObject.SetActive(false);
         scoreText.gameObject.SetActive(false);

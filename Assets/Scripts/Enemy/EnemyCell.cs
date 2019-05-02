@@ -12,7 +12,7 @@ public class EnemyCell : EnemyAi
   }
     
     protected override void Move(){
-    transform.Translate(Vector3.down * _speed * Time.deltaTime * gameManager.DificultyMultiplier);
+    transform.Translate(Vector3.down * _speed * Time.deltaTime * _gameManager.DificultyMultiplier);
     //Debug.Log(gameManager.DificultyMultiplier);
         if(transform.position.y < -10f)
         {
