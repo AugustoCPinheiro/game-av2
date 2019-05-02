@@ -23,8 +23,10 @@ public class UIManager : MonoBehaviour
 
   private Player player;
 
+  private GameObject _missionText;
   void Start() {
     player = GameObject.Find("Player").GetComponent<Player>(); 
+   
   }
   public void UpdateLives(int lives){
    _livesSprites[lives].enabled = false;
@@ -32,8 +34,6 @@ public class UIManager : MonoBehaviour
   public void UpdateAmmo(int count)
   {
     _ammoDisplay.sprite  = _ammoSprites[count];    
-    Debug.Log("<color=red>" +  _ammoSprites[count] + " </color>");
-
   }
   public void UpdateScore(int points){
    scoreText.text = "Score: " + points;
@@ -63,8 +63,6 @@ public class UIManager : MonoBehaviour
   }
    public void SetupUIEnd()
    {
-        _menu.gameObject.SetActive(true);
-          livesImageDisplay.gameObject.SetActive(false);
-        scoreText.gameObject.SetActive(false);
+  
    }
 }

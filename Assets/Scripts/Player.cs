@@ -20,9 +20,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private bool _hasShield;
 
-    [SerializeField]
-    private int _maxLifes = 3;
-
     private int _lifes = 3;
 
     [SerializeField]

@@ -23,7 +23,7 @@ public abstract class EnemyAi : MonoBehaviour
     protected void Start()
     {
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
-        Debug.Log(GameObject.Find("Canvas").GetComponent<UIManager>());
+      
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
@@ -41,10 +41,10 @@ public abstract class EnemyAi : MonoBehaviour
         if(other.tag.Equals("Laser")){
             Laser laser = other.GetComponent<Laser>();
             _lifes = _lifes - laser.Damage;
-    Debug.Log("<color=red>" +  _lifes + " </color>");
+
 
             Destroy(other.gameObject);
-            if( _lifes == 0){
+            if( _lifes <= 0){
                 if(other.transform.parent != null){
                     Destroy(other.transform.parent.gameObject);
                 }
