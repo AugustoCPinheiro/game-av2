@@ -8,10 +8,12 @@ public class EnemyCell : EnemyAi
   void Start(){
       base.Start();
       _lifes = 2;
+      _speed = 1f;
   }
     
     protected override void Move(){
-    transform.Translate(Vector3.down * _speed * Time.deltaTime);
+    transform.Translate(Vector3.down * _speed * Time.deltaTime * gameManager.DificultyMultiplier);
+    Debug.Log(gameManager.DificultyMultiplier);
         if(transform.position.y < -10f)
         {
             float xPosition = Random.Range(-8f, 8f);

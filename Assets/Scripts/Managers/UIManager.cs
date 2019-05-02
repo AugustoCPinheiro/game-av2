@@ -28,8 +28,7 @@ public class UIManager : MonoBehaviour
   }
   public void UpdateAmmo(int count)
   {
-        _ammoDisplay.sprite = _ammoSprites[count];
-        
+    _ammoDisplay.sprite = _ammoSprites[count];    
   }
   public void UpdateScore(int points){
     score += points;

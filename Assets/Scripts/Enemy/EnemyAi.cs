@@ -17,11 +17,14 @@ public abstract class EnemyAi : MonoBehaviour
 
     protected UIManager _uiManager;
 
+    protected GameManager gameManager;
+
     // Start is called before the first frame update
     protected void Start()
     {
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         Debug.Log(GameObject.Find("Canvas").GetComponent<UIManager>());
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame

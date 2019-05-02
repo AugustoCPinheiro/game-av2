@@ -103,7 +103,6 @@ MonoBehaviour:
     type: 3}
   _deathAnimation: {fileID: 3582908375654303342, guid: e3c179c2afb5f3144b0a3e9949ce65b1,
     type: 3}
-  _shieldGameObject: {fileID: 0}
   _shootType: 0
   _hasShield: 0
   _maxLifes: 3
@@ -113,6 +112,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _speedMultiplier: 5
+  _isReloading: 0
+  _audioSource: {fileID: 0}
 --- !u!114 &7984182831856541805
 MonoBehaviour:
   m_ObjectHideFlags: 0

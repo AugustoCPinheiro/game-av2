@@ -11,18 +11,31 @@ public class GameManager : MonoBehaviour
    
     [SerializeField]
     private GameObject _playerPrefab;
+    
+    [SerializeField]
+    private float _dificultyTimer = 4f;
 
+    private float _nextDificultyUpdate;
+    
+    [SerializeField]
+    private float _dificultyMultiplier = 0.5f;
     private Player _player;
     // Start is called before the first frame update
     void Start()
     {
         //_uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
-        
+        _nextDificultyUpdate = Time.time + _dificultyTimer;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if(Time.time > _nextDificultyUpdate){
+            _dificultyMultiplier += 0.1f;
+            _nextDificultyUpdate = Time.time + _dificultyTimer;
+        }
         if (gameOver && Input.GetKey(KeyCode.Space))
        {
             gameOver = !gameOver;
@@ -33,6 +46,8 @@ public class GameManager : MonoBehaviour
             StartCoroutine(spawnManager.SpawnEnemy());
         }
     }
+
+    public float DificultyMultiplier { get => _dificultyMultiplier; }
     }
 
    
