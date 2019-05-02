@@ -6,10 +6,13 @@ public class Laser : MonoBehaviour
 {
     [SerializeField]
     private float _speed = 10.0f;
+
+    [SerializeField]
+    private AudioClip _audioClip;
     // Start is called before the first frame update
     void Start()
     {
-        
+        AudioSource.PlayClipAtPoint(_audioClip, Camera.main.transform.position);
     }
 
     // Update is called once per frame

@@ -13,9 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _deathAnimation;
 
-    [SerializeField]
-    private GameObject _shieldGameObject;
-    
+
     [SerializeField]
     private int _shootType = 0;
 
@@ -42,10 +40,12 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _speedMultiplier = 8;
 
-    private bool _isReloading = false;
+    public bool _isReloading = false;
     private UIManager _uiManager;
     private GameManager _gameManager;
-    private AudioSource _audioSource;
+    
+    [SerializeField]
+    private AudioClip _audioSource;
     
     private float _reloadSpeed = 1.5f;
 
@@ -53,11 +53,10 @@ public class Player : MonoBehaviour
     void Start()
     {
         _currentAmmo = _maxAmmo;
-       transform.position = new Vector3(0,0,0);
-//        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        transform.position = new Vector3(0,0,0);
+        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
       //  _uiManager.UpdateLives(_lifes);
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        //_audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -85,18 +84,12 @@ public class Player : MonoBehaviour
                     break;
             }
             _currentAmmo--;
-//            _audioSource.Play();
-    }
+            _uiManager.UpdateAmmo(_currentAmmo);
+           
+        }
 
   
 
-        //Maybe for fast shooting
-        /*float fireAxis = Input.GetAxis("Fire1");
-        Debug.Log(fireAxis + "");
-        if(fireAxis == 1)
-        {
-            Instantiate(laserPrefab);
-        }*/
     }
 
     private void Movement()
@@ -132,14 +125,16 @@ public class Player : MonoBehaviour
     }
    private void reloadAmmo(){
        if(_currentAmmo == 0){
+
            _isReloading = true;
+           _uiManager.Reload(_isReloading);
            StartCoroutine(reload());
        }
    }
     public void Damage(){
         if(_hasShield){
             _hasShield = !_hasShield;
-            _shieldGameObject.SetActive(false);
+          
 
         }else{
             _lifes--;
@@ -148,6 +143,7 @@ public class Player : MonoBehaviour
 
             if (_lifes < 1){
                 Instantiate(_deathAnimation, transform.position, Quaternion.identity);
+                 AudioSource.PlayClipAtPoint(_audioSource, Camera.main.transform.position);
                 //_gameManager.gameOver = true;
                 //_uiManager.SetupUIEnd();
                 Destroy(this.gameObject);
@@ -183,7 +179,7 @@ public class Player : MonoBehaviour
     public void ShieldPowerupOn()
     {
         _hasShield = true;
-        _shieldGameObject.SetActive(true);
+       
     }
 
     IEnumerator ReloadPowerupDownRoutine()
@@ -205,7 +201,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(_reloadSpeed);
         _isReloading = false;
         _currentAmmo = _maxAmmo;
-        //_uiManager.updateAmmo(_currentAmmo);
+        _uiManager.Reload(_isReloading);
     }
 
 

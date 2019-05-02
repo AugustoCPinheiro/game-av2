@@ -6,6 +6,7 @@ public class EnemyCell : EnemyAi
 {
     // Start is called before the first frame update
   void Start(){
+      base.Start();
       _lifes = 2;
   }
     

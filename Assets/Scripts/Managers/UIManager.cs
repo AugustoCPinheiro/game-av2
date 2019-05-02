@@ -4,28 +4,36 @@ using UnityEngine;
 using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
-    [SerializeField]
-    private Sprite[] _livesSprites;
+  [SerializeField]
+  private Sprite[] _livesSprites;
+
+  [SerializeField]
+  private Sprite[] _ammoSprites;
     
-    public Image livesImageDisplay;
+  public Image livesImageDisplay;
 
-    [SerializeField]
-    private Image _menu;
+  [SerializeField]
+  private Image _ammoDisplay;
 
-    public int score;
+  [SerializeField]
+  private Image _menu;
 
-    public Text scoreText;
+  public int score;
 
-   public void UpdateLives(int lives){
-        livesImageDisplay.sprite = _livesSprites[lives];
-   }
-     public void UpdateAmmo(int count)
-    {
-        //_ammoText.text = "Ammo: " + count;
-    }
-   public void UpdateScore(int points){
-        score += points;
-    //    scoreText.text = "Score: " + score;
+  public Text scoreText;
+
+  
+  public void UpdateLives(int lives){
+    livesImageDisplay.sprite = _livesSprites[lives];
+  }
+  public void UpdateAmmo(int count)
+  {
+        _ammoDisplay.sprite = _ammoSprites[count];
+        
+  }
+  public void UpdateScore(int points){
+    score += points;
+   scoreText.text = "Score: " + score;
   }
    
    //public void SetupUIStart()
@@ -36,6 +44,16 @@ public class UIManager : MonoBehaviour
      //   scoreText.gameObject.SetActive(true);
      
    //}
+
+  public void Reload(bool isReloading){
+    Animator imageAnimator = _ammoDisplay.GetComponent<Animator>(); 
+    
+    if(isReloading){
+      imageAnimator.SetBool("Need_reload", isReloading);
+    }else{
+      imageAnimator.SetBool("Need_reload", isReloading);            
+    }
+  }
    public void SetupUIEnd()
    {
         score = 0;
