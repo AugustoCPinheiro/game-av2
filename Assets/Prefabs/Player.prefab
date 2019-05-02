@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _laserPrefab: {fileID: 4244652643996355513, guid: ac7f2c58cbefd5a488eb17a4129f1aa9,
     type: 3}
-  _tripeShotPrefab: {fileID: 8478689014159064367, guid: b79a8274beee9ea43a84eae2674ef585,
+  _bigShotPrefab: {fileID: 7286628167820803637, guid: aed031c19b2f02c4f9e548d26d2bedcc,
     type: 3}
   _deathAnimation: {fileID: 3582908375654303342, guid: e3c179c2afb5f3144b0a3e9949ce65b1,
     type: 3}

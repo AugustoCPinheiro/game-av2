@@ -7,7 +7,10 @@ public class BloodCell : MonoBehaviour
     [SerializeField]
     private float _speed = 0.1f;
   
-
+    void  Start() {
+            transform.Translate(new Vector3(Random.Range(-14f, 12f), Random.Range(10f, 12.3f), 0));
+        
+    }
     // Update is called once per frame
     void Update()
     {

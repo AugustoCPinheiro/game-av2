@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
             _dificultyMultiplier += 0.1f;
             _nextDificultyUpdate = Time.time + _dificultyTimer;
         }
-        if (gameOver && Input.GetKey(KeyCode.Space))
+        if (gameOver)
        {
             gameOver = !gameOver;
            // _uiManager.SetupUIStart();

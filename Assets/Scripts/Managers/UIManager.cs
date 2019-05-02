@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class UIManager : MonoBehaviour
 {
   [SerializeField]
-  private Sprite[] _livesSprites;
+  private Image[] _livesSprites;
 
   [SerializeField]
   private Sprite[] _ammoSprites;
@@ -22,18 +23,28 @@ public class UIManager : MonoBehaviour
 
   public Text scoreText;
 
-  
+  private Player player;
+
+  void Start() {
+    player = GameObject.Find("Player").GetComponent<Player>(); 
+  }
   public void UpdateLives(int lives){
-    livesImageDisplay.sprite = _livesSprites[lives];
+   _livesSprites[lives].enabled = false;
   }
   public void UpdateAmmo(int count)
   {
-    _ammoDisplay.sprite = _ammoSprites[count];    
+    _ammoDisplay.sprite  = _ammoSprites[count];    
+    Debug.Log("<color=red>" +  _ammoSprites[count] + " </color>");
+
   }
   public void UpdateScore(int points){
     score += points;
    scoreText.text = "Score: " + score;
   }
+
+  //private void LateUpdate() {
+   // UpdateAmmo(player.Ammo);
+ // }
    
    //public void SetupUIStart()
    //{

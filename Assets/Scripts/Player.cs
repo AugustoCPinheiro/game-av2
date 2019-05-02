@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _laserPrefab;
     [SerializeField]
-    private GameObject _tripeShotPrefab;
+    private GameObject _bigShotPrefab;
 
     [SerializeField]
     private GameObject _deathAnimation;
@@ -62,8 +62,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        reloadAmmo();
         Movement();
+    }
+    void FixedUpdate() {
         Shoot();
     }
 
@@ -73,17 +74,20 @@ public class Player : MonoBehaviour
 
         if((Input.GetKeyDown(KeyCode.Space)|| Input.GetKeyDown(KeyCode.Mouse0))&& Time.time > _nextFire && !_isReloading)
         {
+            _nextFire = Time.time + _fireRate;
             switch (_shootType) { 
                 case 0:
-                    _nextFire = Time.time + _fireRate;
                     Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.88f , 0), Quaternion.identity);
                     break;
                 case 1:
-                    _nextFire = Time.time + _fireRate;
-                    Instantiate(_tripeShotPrefab, transform.position, Quaternion.identity);
+                    Instantiate(_bigShotPrefab, transform.position + new Vector3(0, 0.88f , 0), Quaternion.identity);
                     break;
             }
             _currentAmmo--;
+
+            if (_currentAmmo == 0){
+              reloadAmmo();
+            }
             _uiManager.UpdateAmmo(_currentAmmo);
            
         }
@@ -103,9 +107,9 @@ public class Player : MonoBehaviour
         transform.Translate(Vector3.up * Time.deltaTime * _speedMultiplier * verticalInput);
 
 
-        if (transform.position.y > 3)
+        if (transform.position.y > 10)
         {
-            transform.position = new Vector3(transform.position.x, 3, 0);
+            transform.position = new Vector3(transform.position.x, 10, 0);
         }
         else if (transform.position.y < -7.9f)
         {
@@ -124,12 +128,10 @@ public class Player : MonoBehaviour
        
     }
    private void reloadAmmo(){
-       if(_currentAmmo == 0){
-
            _isReloading = true;
            _uiManager.Reload(_isReloading);
            StartCoroutine(reload());
-       }
+       
    }
     public void Damage(){
         if(_hasShield){
@@ -138,8 +140,7 @@ public class Player : MonoBehaviour
 
         }else{
             _lifes--;
-//            _uiManager.UpdateLives(_lifes);
-            BreakEngine();
+            _uiManager.UpdateLives(_lifes);
 
             if (_lifes < 1){
                 Instantiate(_deathAnimation, transform.position, Quaternion.identity);
@@ -151,18 +152,6 @@ public class Player : MonoBehaviour
         }
     }
     
-    private void BreakEngine()
-    {
-
-       //if(_maxLifes - _lifes == 1)
-        //{
-         //   _engines[0].SetActive(true);
-       // }
-      //  else
-    //    {
-  //          _engines[1].SetActive(true);
-//        }
-    }
 
     public void ReloadPowerupOn()
     {
@@ -176,9 +165,10 @@ public class Player : MonoBehaviour
         StartCoroutine(SpeedPowerUpDownRoutine());
     }
 
-    public void ShieldPowerupOn()
+    public void BigShotPowerupOn()
     {
-        _hasShield = true;
+        _shootType = 1;
+        StartCoroutine(BigShotPowerupDownRoutine());
        
     }
 
@@ -193,8 +183,15 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(5.0f);
         _speedMultiplier = 5;
     }
+
+    IEnumerator BigShotPowerupDownRoutine(){
+        yield return new WaitForSeconds(5.0f);
+        _shootType = 0;
+    }
     
     public int Lifes { get => Lifes; }
+    //public int Ammo { get => _currentAmmo; }
+
 
     IEnumerator reload()
     {

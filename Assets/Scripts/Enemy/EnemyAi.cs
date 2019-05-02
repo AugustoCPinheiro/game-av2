@@ -7,7 +7,7 @@ public abstract class EnemyAi : MonoBehaviour
   [SerializeField]
     protected float _speed = 5.0f;
     [SerializeField]
-    protected float _lifes;
+    protected int _lifes;
 
     [SerializeField]
     protected GameObject[] _powerUpDrops;
@@ -39,7 +39,10 @@ public abstract class EnemyAi : MonoBehaviour
     {
 
         if(other.tag.Equals("Laser")){
-            _lifes--;
+            Laser laser = other.GetComponent<Laser>();
+            _lifes = _lifes - laser.Damage;
+    Debug.Log("<color=red>" +  _lifes + " </color>");
+
             Destroy(other.gameObject);
             if( _lifes == 0){
                 if(other.transform.parent != null){
@@ -70,10 +73,10 @@ public abstract class EnemyAi : MonoBehaviour
 
     private void GenerateDrop()
     {
-        int random = Random.Range(1, 5);
+        int random = Random.Range(1, 4);
         if (random == 1)
         {
-            random = Random.Range(0, 2);
+            random = Random.Range(0, 3);
             Instantiate(_powerUpDrops[random], transform.position, Quaternion.identity);
         }
     }

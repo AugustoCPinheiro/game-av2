@@ -22,27 +22,8 @@ public class PowerUp : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag.Equals("Player")) { 
-            Player player = other.gameObject.GetComponent<Player>();
-            if (player != null)
-            {
-                switch (_powerupId) {
-                    case 0:
-                        player.ReloadPowerupOn();
-                        break;
-                    case 1:
-                        player.SpeedPowerUpOn();
-                        break;
-                    case 2:
-                        player.ShieldPowerupOn();
-                        break;
-                }
-        }
-        //    AudioSource.PlayClipAtPoint(_clip, Camera.main.transform.position, 1f);
-           
-            Destroy(this.gameObject);
-        }
+        Destroy(this.gameObject);   
     }
 }

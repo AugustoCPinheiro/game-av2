@@ -9,4 +9,13 @@ public class ReloadPowerup : PowerUp
     {
      _powerupId = 0;   
     }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+            if(other.tag.Equals("Player")){                
+                Player player = other.gameObject.GetComponent<Player>();
+                player.ReloadPowerupOn();
+            }
+            base.OnTriggerEnter2D(other);
+                
+    }
 }

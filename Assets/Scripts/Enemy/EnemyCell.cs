@@ -13,7 +13,7 @@ public class EnemyCell : EnemyAi
     
     protected override void Move(){
     transform.Translate(Vector3.down * _speed * Time.deltaTime * gameManager.DificultyMultiplier);
-    Debug.Log(gameManager.DificultyMultiplier);
+    //Debug.Log(gameManager.DificultyMultiplier);
         if(transform.position.y < -10f)
         {
             float xPosition = Random.Range(-8f, 8f);
@@ -25,7 +25,7 @@ public class EnemyCell : EnemyAi
     void Update()
     {
         base.Update();
-        Debug.Log("Teste");
+
     }
 
     void OnTriggerEnter2D(Collider2D other){
