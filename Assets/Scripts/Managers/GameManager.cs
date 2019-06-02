@@ -9,10 +9,8 @@ public class GameManager : MonoBehaviour
 
     private UIManager _uiManager;
 
-    
-   
     [SerializeField]
-    private GameObject _playerPrefab;
+    private GameObject boss;
 
     private int _score;
     
@@ -33,13 +31,14 @@ public class GameManager : MonoBehaviour
         _score = 0;
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _nextDificultyUpdate = Time.time + _dificultyTimer;
+        Debug.Log("start");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(_score >= 400){
-            EndGame();
+        if(_score >= 20){
+           UnleasheTheBoss();
         }
 
         if(Time.time > _nextDificultyUpdate){
@@ -53,7 +52,9 @@ public class GameManager : MonoBehaviour
     //        Instantiate(_playerPrefab, Vector3.zero, Quaternion.identity);
 
             spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
+            
             StartCoroutine(spawnManager.SpawnEnemy());
+            
         }
     }
     
@@ -69,9 +70,14 @@ public class GameManager : MonoBehaviour
         _uiManager.UpdateScore(_score); 
     }
 
-    private void unleasheTheBoss(){
+    private void UnleasheTheBoss(){       
+        if(!bossUnleashed){
+        Instantiate(boss, new Vector3(20,10,0), Quaternion.identity);        
         bossUnleashed = true;
-        
+        StopCoroutine(spawnManager.SpawnEnemy());
+        }else{
+
+        }
     }
 
     public float DificultyMultiplier { get => _dificultyMultiplier; }

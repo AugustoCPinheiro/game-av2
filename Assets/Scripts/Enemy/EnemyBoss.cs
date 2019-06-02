@@ -6,7 +6,8 @@ public abstract class EnemyBoss : EnemyAi
 {
     protected float cooldown;
     protected float nextShot;
-
+    [SerializeField]
+    protected GameObject bullet;
     protected Player player;
     void Start()
     {
