@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float _dificultyMultiplier = 0.5f;
     private Player _player;
+
+    private bool bossUnleashed = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -65,6 +67,11 @@ public class GameManager : MonoBehaviour
     public void UpdatePlayerScore(int points){
         _score += points;
         _uiManager.UpdateScore(_score); 
+    }
+
+    private void unleasheTheBoss(){
+        bossUnleashed = true;
+        
     }
 
     public float DificultyMultiplier { get => _dificultyMultiplier; }
