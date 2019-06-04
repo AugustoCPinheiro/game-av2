@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_score >= 20){
+        if(_score >= 200){
            UnleasheTheBoss();
         }
 

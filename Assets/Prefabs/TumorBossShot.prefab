@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6823159791486861627}
   m_Layer: 0
   m_Name: TumorBossShot
-  m_TagString: Untagged
+  m_TagString: BossShot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

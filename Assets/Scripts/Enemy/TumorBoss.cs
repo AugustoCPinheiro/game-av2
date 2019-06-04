@@ -6,21 +6,31 @@ public class TumorBoss : EnemyBoss
 {
     private float timeToMove = 2.0f;
     private float moveDirection;
+    private GameManager gameManager;
 
+    private float firstCooldown;
     
     
     
     void Start()
     {
-        cooldown = 1.5f;
+        cooldown = 2f;
+        firstCooldown = cooldown;
         player = GameObject.Find("Player").GetComponent<Player>();
         StartCoroutine(MoveChange());
         StartCoroutine(ShootCoroutine());
-        _lifes = 10;
+        _lifes = 12;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
     }
 
     private void FixedUpdate() {
-    Move();    
+        Move();  
+        if (cooldown > 0.8f)
+        {
+            cooldown = firstCooldown - (gameManager.DificultyMultiplier/10); 
+            Debug.Log(cooldown);
+        }
     }
     
     protected override void Move(){
@@ -61,4 +71,6 @@ public class TumorBoss : EnemyBoss
             yield return new WaitForSeconds(cooldown);
         }
     }
+
+    
 }
