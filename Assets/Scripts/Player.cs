@@ -131,11 +131,6 @@ public class Player : MonoBehaviour
        
    }
     public void Damage(){
-        if(_hasShield){
-            _hasShield = !_hasShield;
-          
-
-        }else{
             _lifes--;
             _uiManager.UpdateLives(_lifes);
 
@@ -146,7 +141,7 @@ public class Player : MonoBehaviour
                 //_uiManager.SetupUIEnd();
                 Destroy(this.gameObject);
             }
-        }
+        
     }
     
 

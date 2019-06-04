@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyCell : EnemyAi
 {
     // Start is called before the first frame update
+    [SerializeField]
+    private AudioClip deathAudio;
   void Start(){
       base.Start();
       _lifes = 2;
@@ -17,8 +19,8 @@ public class EnemyCell : EnemyAi
         if(transform.position.y < -10f)
         {
             float xPosition = Random.Range(-8f, 8f);
-          transform.position = new Vector3(xPosition, transform.position.y * -1, 0);
-        Destroy(this.gameObject);
+            transform.position = new Vector3(xPosition, transform.position.y * -1, 0);
+            Destroy(this.gameObject);
         }
     }
     // Update is called once per frame
@@ -30,6 +32,9 @@ public class EnemyCell : EnemyAi
 
     void OnTriggerEnter2D(Collider2D other){
         base.OnTriggerEnter2D(other);
-        
+        if (other.tag.Equals("Laser"))
+        { 
+        AudioSource.PlayClipAtPoint(deathAudio, Camera.main.transform.position);            
+        }
     }
 }
