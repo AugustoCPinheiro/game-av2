@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     private float _dificultyTimer = 4f;
 
     private float _nextDificultyUpdate;
+
+    public bool shouldSpawn = true;
     private SpawnManager spawnManager; 
     
     [SerializeField]
@@ -61,7 +63,8 @@ public class GameManager : MonoBehaviour
     }
     
 
-    public void EndGame(){      
+    public void EndGame(){   
+        shouldSpawn = false;   
         foreach(GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
         {
             Destroy(enemy);
@@ -77,7 +80,7 @@ public class GameManager : MonoBehaviour
         if(!bossUnleashed){
         Instantiate(boss, new Vector3(0,15,0), Quaternion.identity);        
         bossUnleashed = true;
-        StopCoroutine(spawnManager.SpawnEnemy());
+       
         }else{
 
         }

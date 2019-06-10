@@ -122,7 +122,7 @@ public class Player : MonoBehaviour {
         if (_lifes < 1) {
             Instantiate(_deathAnimation, transform.position, Quaternion.identity);
             AudioSource.PlayClipAtPoint(_audioSource, Camera.main.transform.position);
-            //_gameManager.gameOver = true;
+            _gameManager.EndGame();
             //_uiManager.SetupUIEnd();
             Destroy(this.gameObject);
         }

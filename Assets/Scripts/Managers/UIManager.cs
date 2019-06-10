@@ -42,7 +42,14 @@ public class UIManager : MonoBehaviour
   //private void LateUpdate() {
    // UpdateAmmo(player.Ammo);
  // }
-   
+  
+  public void SetupUIEndDefeat(){
+
+  }
+
+  public void SetupUIEndWin(){
+    
+  }
    //public void SetupUIStart()
    //{
         
