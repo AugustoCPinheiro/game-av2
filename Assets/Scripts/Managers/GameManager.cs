@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     private GameObject boss;
 
     private int _score;
+
+    public static int endScore;
+    public static string playerName;
     
     [SerializeField]
     private float _dificultyTimer = 4f;
@@ -64,6 +67,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(enemy);
         }
+        endScore = _score;
     }
     public void UpdatePlayerScore(int points){
         _score += points;
