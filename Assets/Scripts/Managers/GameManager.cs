@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_score >= 200){
+        if(_score >= 10){
            UnleasheTheBoss();
         }
 
@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
 
     private void UnleasheTheBoss(){       
         if(!bossUnleashed){
-        Instantiate(boss, new Vector3(20,10,0), Quaternion.identity);        
+        Instantiate(boss, new Vector3(0,15,0), Quaternion.identity);        
         bossUnleashed = true;
         StopCoroutine(spawnManager.SpawnEnemy());
         }else{

@@ -17,6 +17,10 @@ public class TumorBoss : EnemyBoss
         cooldown = 2f;
         firstCooldown = cooldown;
         player = GameObject.Find("Player").GetComponent<Player>();
+        
+        Vector3 endPosition = new Vector3(0,8.8f,0);
+     
+       
         StartCoroutine(MoveChange());
         StartCoroutine(ShootCoroutine());
         _lifes = 12;
