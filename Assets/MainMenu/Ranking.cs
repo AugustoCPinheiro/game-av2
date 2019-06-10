@@ -16,8 +16,10 @@ public class Ranking : MonoBehaviour
         entryTemplate = transform.Find("highScoreEntryTemplate");
         entryTemplate.gameObject.SetActive(false);
 
+        string playerName = PlayerPrefs.GetString("playerName");
+
         newHighScore.score = GameManager.endScore;
-        newHighScore.name = GameManager.playerName;
+        newHighScore.name = playerName;
         AddHighScoreEntry(newHighScore);
 
         string jsonString = PlayerPrefs.GetString("highScoreTable");

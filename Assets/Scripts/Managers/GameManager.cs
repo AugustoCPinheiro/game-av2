@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
     private int _score;
 
     public static int endScore;
-    public static string playerName;
     
     [SerializeField]
     private float _dificultyTimer = 4f;
