@@ -123,7 +123,7 @@ public class Player : MonoBehaviour {
             Instantiate(_deathAnimation, transform.position, Quaternion.identity);
             AudioSource.PlayClipAtPoint(_audioSource, Camera.main.transform.position);
             _gameManager.EndGame();
-            //_uiManager.SetupUIEnd();
+            _uiManager.SetupUIEndDefeat();
             Destroy(this.gameObject);
         }
         AudioSource.PlayClipAtPoint(damageSound, Camera.main.transform.position);

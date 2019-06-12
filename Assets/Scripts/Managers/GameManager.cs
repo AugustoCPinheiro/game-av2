@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         _score = 0;
+        _player = GameObject.Find("Player").GetComponent<Player>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _nextDificultyUpdate = Time.time + _dificultyTimer;
         Debug.Log("start");
@@ -41,7 +42,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_score >= 10){
+        if(_score >= 200){
            UnleasheTheBoss();
         }
 
@@ -76,9 +77,15 @@ public class GameManager : MonoBehaviour
         _uiManager.UpdateScore(_score); 
     }
 
+    public void BossDefeated(){
+        _uiManager.SetupUIEndWin();
+        _player.enabled = false;
+        EndGame();
+    }
+
     private void UnleasheTheBoss(){       
         if(!bossUnleashed){
-        Instantiate(boss, new Vector3(0,15,0), Quaternion.identity);        
+        Instantiate(boss, new Vector3(0,15f,0), Quaternion.identity);        
         bossUnleashed = true;
        
         }else{

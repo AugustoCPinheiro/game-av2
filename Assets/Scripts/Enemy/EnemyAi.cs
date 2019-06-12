@@ -35,7 +35,7 @@ public abstract class EnemyAi : MonoBehaviour
 
     protected abstract void Move();
 
-    protected void OnTriggerEnter2D(Collider2D other)
+    protected  void OnTriggerEnter2D(Collider2D other)
     {
 
         if(other.tag.Equals("Laser")){

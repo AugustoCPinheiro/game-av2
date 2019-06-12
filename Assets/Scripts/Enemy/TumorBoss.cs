@@ -17,9 +17,6 @@ public class TumorBoss : EnemyBoss
         cooldown = 2f;
         firstCooldown = cooldown;
         player = GameObject.Find("Player").GetComponent<Player>();
-        
-        Vector3 endPosition = new Vector3(0,8.8f,0);
-     
        
         StartCoroutine(MoveChange());
         StartCoroutine(ShootCoroutine());
@@ -38,6 +35,10 @@ public class TumorBoss : EnemyBoss
     }
     
     protected override void Move(){
+        if (transform.position.y > 9f)
+        {
+            transform.Translate(Vector3.up*2*-1*Time.deltaTime);
+        }else{
         if (transform.position.x > 12.4f){
            moveDirection = -1;
         }
@@ -46,6 +47,7 @@ public class TumorBoss : EnemyBoss
                        moveDirection = 1;
         }
         transform.Translate(Vector3.right*_speed*moveDirection*Time.deltaTime);
+        }
     }
 
     protected override void Shoot(){
@@ -76,5 +78,17 @@ public class TumorBoss : EnemyBoss
         }
     }
 
-    
+    protected  void OnTriggerEnter2D(Collider2D other) {
+        if (other.tag.Equals("Laser"))
+        {
+            Debug.Log("IF CERTo");
+            _lifes--;
+            Destroy(other.gameObject);
+            if (_lifes == 0)
+            {
+                Destroy(this.gameObject);
+                gameManager.BossDefeated();
+            }
+        }
+    }   
 }
