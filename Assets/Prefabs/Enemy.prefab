@@ -101,7 +101,7 @@ MonoBehaviour:
   - {fileID: 4915666744425830725, guid: f334c0591344883418acd6ae328f24ef, type: 3}
   - {fileID: 5648020921529057230, guid: 5b52a5c763f0c5941bf3bef40f9fc068, type: 3}
   _deathAnimation: {fileID: 0}
-  deathAudio: {fileID: 8300000, guid: d58849f30f1b5f14e887651beb7399cc, type: 3}
+  deathAudio: {fileID: 8300000, guid: 14b79cc9243112447b97388b7dd080e2, type: 3}
 --- !u!58 &1862855288038346170
 CircleCollider2D:
   m_ObjectHideFlags: 0
