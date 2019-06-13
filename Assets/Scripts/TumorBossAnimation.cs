@@ -21,9 +21,18 @@ public class TumorBossAnimation : MonoBehaviour
     public void toLeft(){
         bossAnimator.SetBool("toLeft", true);
         bossAnimator.SetBool("toRight", false);
+        bossAnimator.SetBool("toIdle", false);
     }
     public void toRight(){
         bossAnimator.SetBool("toLeft", false);
         bossAnimator.SetBool("toRight", true);
+        bossAnimator.SetBool("toIdle", false);
+    }
+
+    public void toIdle(){
+        bossAnimator.SetBool("toLeft", false);
+        bossAnimator.SetBool("toRight", false);
+        bossAnimator.SetBool("toIdle", true);
+
     }
 }

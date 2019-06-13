@@ -12,10 +12,12 @@ public class BossShot : MonoBehaviour
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-        player = GameObject.Find("Player").GetComponent<Player>();
-        if(player == null){
-            Destroy(this.gameObject);
+        GameObject playerGameObject = GameObject.Find("Player");
+        if(playerGameObject == null){
+        Destroy(this.gameObject);
         }
+        player = playerGameObject.GetComponent<Player>();
+        
         moveDirection = (player.transform.position - transform.position).normalized * speed;
         rigidBody.velocity = new Vector2(moveDirection.x, moveDirection.y);
     }

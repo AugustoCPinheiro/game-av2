@@ -10,6 +10,7 @@ public class TumorBoss : EnemyBoss
 
     private float firstCooldown;
 
+    private bool shouldStop = false;
     private TumorBossAnimation animationScript;
     
     
@@ -59,6 +60,10 @@ public class TumorBoss : EnemyBoss
         }
     }
 
+    public void Stop(){
+        animationScript.toIdle();
+        shouldStop = true;
+    }
     protected override void Shoot(){
     Instantiate(bullet, transform.position, Quaternion.identity);
        
@@ -68,13 +73,13 @@ public class TumorBoss : EnemyBoss
     {
     }
     IEnumerator ShootCoroutine(){
-        while(true){
+        while(!shouldStop){
             yield return new WaitForSeconds(cooldown);
             Shoot();
         }
     }
     IEnumerator MoveChange(){
-        while(true){
+        while(!shouldStop){
             switch(Random.Range(0, 2)){
                 case 0:
                     moveDirection = 1;

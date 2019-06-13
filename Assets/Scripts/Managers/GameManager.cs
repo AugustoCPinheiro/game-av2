@@ -70,6 +70,10 @@ public class GameManager : MonoBehaviour
         {
             Destroy(enemy);
         }
+        if(boss != null){
+           
+            boss.GetComponent<TumorBoss>().Stop();
+        }
         endScore = _score;
     }
     public void UpdatePlayerScore(int points){
@@ -85,9 +89,9 @@ public class GameManager : MonoBehaviour
 
     private void UnleasheTheBoss(){       
         if(!bossUnleashed){
-        Instantiate(boss, new Vector3(0,15f,0), Quaternion.identity);        
+        boss = Instantiate(boss, new Vector3(0,15f,0), Quaternion.identity);        
         bossUnleashed = true;
-       
+         
         }else{
 
         }
