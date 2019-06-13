@@ -9,11 +9,14 @@ public class TumorBoss : EnemyBoss
     private GameManager gameManager;
 
     private float firstCooldown;
+
+    private TumorBossAnimation animationScript;
     
     
     
     void Start()
     {
+        animationScript = GetComponent<TumorBossAnimation>();
         cooldown = 2f;
         firstCooldown = cooldown;
         player = GameObject.Find("Player").GetComponent<Player>();
@@ -46,6 +49,12 @@ public class TumorBoss : EnemyBoss
         {
                        moveDirection = 1;
         }
+
+        if(moveDirection == -1){
+            animationScript.toLeft();
+        }else{
+            animationScript.toRight();
+        }
         transform.Translate(Vector3.right*_speed*moveDirection*Time.deltaTime);
         }
     }
@@ -72,6 +81,7 @@ public class TumorBoss : EnemyBoss
                     break;
                 case 1:
                     moveDirection = -1;
+                    
                     break;
             }
             yield return new WaitForSeconds(cooldown);
